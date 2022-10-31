@@ -3,7 +3,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const listEndpoints = require('express-list-endpoints');
 
-const mongoUrl = process.env.MONGO_URL || 'mongodb+srv://dmnich:h2otowoda@cluster0.5dyaixy.mongodb.net/?retryWrites=true&w=majority';
+const mongoUrl = process.env.MONGO_URL || 'mongodb://localhost:27017';
 mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.Promise = Promise;
 
@@ -43,6 +43,11 @@ app.get('/', async (req, res) => {
 app.get('/tasks', async (req, res) => {
   const tasks = await Task.find({});
   res.status(200).json(tasks);
+});
+
+app.get('/test', async (req, res) => {
+  const tasks = await Task.find({});
+  res.status(200).json('test');
 });
 
 
